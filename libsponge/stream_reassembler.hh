@@ -5,15 +5,30 @@
 
 #include <cstdint>
 #include <string>
+#include <queue>
+#include <deque>
+#include <alogrithm>
 
 //! \brief A class that assembles a series of excerpts from a byte stream (possibly out of order,
 //! possibly overlapping) into an in-order byte stream.
+class segment{
+  public:
+  string str;
+  size_t from;
+  size_t to;
+  size_t next;
+  size_t len;
+}
 class StreamReassembler {
   private:
     // Your code here -- add private members as necessary.
 
     ByteStream _output;  //!< The reassembled in-order byte stream
     size_t _capacity;    //!< The maximum number of bytes
+    size_t idx;
+    size_t left;
+    size_t endof;
+    queue<segment> qs;
 
   public:
     //! \brief Construct a `StreamReassembler` that will store up to `capacity` bytes.
