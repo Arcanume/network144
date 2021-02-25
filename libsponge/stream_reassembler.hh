@@ -7,7 +7,8 @@
 #include <string>
 #include <queue>
 #include <deque>
-#include <alogrithm>
+#include <vector>
+#include <algorithm>
 
 //! \brief A class that assembles a series of excerpts from a byte stream (possibly out of order,
 //! possibly overlapping) into an in-order byte stream.
@@ -16,9 +17,15 @@ class segment{
   string str;
   size_t from;
   size_t to;
-  size_t next;
-  size_t len;
-}
+  segment(string st,size_t fr,size_t t):str(st),from(fr),to(t){}
+  bool operator <(const segment& temp) const{
+    if(from< temp.from)
+      return true;
+    if(from==temp.from)
+      return to>temp.to;
+    return false;
+  }
+};
 class StreamReassembler {
   private:
     // Your code here -- add private members as necessary.
@@ -28,7 +35,7 @@ class StreamReassembler {
     size_t idx;
     size_t left;
     size_t endof;
-    queue<segment> qs;
+    vector<segment> qs;
 
   public:
     //! \brief Construct a `StreamReassembler` that will store up to `capacity` bytes.
