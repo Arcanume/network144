@@ -102,8 +102,11 @@ void StreamReassembler::push_substring(const string &data, const size_t index, c
     }
     if(eof)
         endof=index+data.length();
+        //cout<<"idx:"<<idx<<"\teof :"<<endof<<endl;
+    
     if(idx==endof)
         _output.end_input();
+
 }
 
 size_t StreamReassembler::unassembled_bytes() const { return left; }

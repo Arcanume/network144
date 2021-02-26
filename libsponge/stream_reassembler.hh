@@ -59,6 +59,8 @@ class StreamReassembler {
     ByteStream &stream_out() { return _output; }
     //!@}
 
+    const size_t & acknum() const { return idx; }
+    size_t & acknum() { return idx; }
     //! The number of bytes in the substrings stored but not yet reassembled
     //!
     //! \note If the byte at a particular index has been pushed more than once, it
@@ -68,6 +70,8 @@ class StreamReassembler {
     //! \brief Is the internal state empty (other than the output stream)?
     //! \returns `true` if no substrings are waiting to be assembled
     bool empty() const;
+
+    
 };
 
 #endif  // SPONGE_LIBSPONGE_STREAM_REASSEMBLER_HH
